@@ -33,7 +33,7 @@ stages:
 - stage: Deploy
   jobs:
   - deployment: DeployFakeRestAPI
-    #Display: 'Deploy app to custom VM'
+    displayName: 'Deploy app to custom VM'
     pool:
       vmImage: 'Ubuntu-20.04'
     environment: 'TEST'
