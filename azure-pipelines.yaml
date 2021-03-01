@@ -17,7 +17,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
       inputs:
-        rootFolderOrFile: 'path/to/fakerestapi'
+        rootFolderOrFile: 'jmeter/fakerestapi'
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
@@ -25,12 +25,15 @@ stages:
       displayName: 'Upload Package'
       artifact: drop-fakerestapi
 
+    - publish: selenium/functional_ui_test.py
+      displayName: 'Upload UI Tests definition'
+      artifact: drop-ui-tests
 
 
-
-- stage: TEST
+- stage: Deploy
   jobs:
-  - deployment: FakeRestAPI
+  - deployment: DeployFakeRestAPI
+    Displpay: Deploy app to custom VM'
     pool:
       vmImage: 'Ubuntu-16.04'
     environment: 'TEST'
@@ -42,7 +45,7 @@ stages:
             displayName: 'Deploy Azure Web App'
             inputs:
               azureSubscription: ''
-              appName: ''
+              appName: $'webAppName'
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
   # - deployment: VMDeploy
