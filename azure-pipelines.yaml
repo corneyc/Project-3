@@ -25,7 +25,7 @@ stages:
       displayName: 'Upload Package'
       artifact: drop-fakerestapi
 
-    - publish: selenium/functional_ui_test.py
+    - publish: selenium/login.py
       displayName: 'Upload UI Tests definition'
       artifact: drop-ui-tests
 
