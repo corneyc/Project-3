@@ -32,8 +32,6 @@ stages:
     - publish: selenium/login.py
       displayName: 'Upload UI Tests definition'
       artifact: drop-ui-tests
-
-
 - stage: Deploy
   jobs:
   - deployment: DeployFakeRestAPI
