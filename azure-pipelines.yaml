@@ -35,7 +35,7 @@ stages:
   - deployment: DeployFakeRestAPI
     Displpay: Deploy app to custom VM'
     pool:
-      vmImage: 'Ubuntu-16.04'
+      vmImage: 'Ubuntu-20.04'
     environment: 'TEST'
     strategy:
       runOnce:
