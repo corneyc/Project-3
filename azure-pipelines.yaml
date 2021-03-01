@@ -2,7 +2,7 @@ name: Azure Pipelines
 variables:
 
 # Azure Resource Manager service connection for pipelines
-  azureServiceConnectionId: '05ee8ac7-636f-402c-b583-b48c70e937b6'
+  azureServiceConnectionId: ''
   
   python.version: '3.7.6'
 stages:
