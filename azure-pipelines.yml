@@ -89,7 +89,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId)
-        backendServiceArm: $(azureServiceConnectionId) 
+        #backendServiceArm: $(azureServiceConnectionId) 
       displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
       
@@ -99,7 +99,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId) 
-        backendServiceArm: $(azureServiceConnectionId)
+        #backendServiceArm: $(azureServiceConnectionId)
       displayName: 'Tarraform Apply'  
 
     - task: ArchiveFiles@2
