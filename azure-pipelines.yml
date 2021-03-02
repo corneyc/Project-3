@@ -65,8 +65,8 @@ stages:
   jobs:
   - deployment: DeploymentJob
     pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentName)
+      vmImage: ubuntu-20.04
+    environment: $(TEST)
     strategy:
       runOnce:
         deploy:
