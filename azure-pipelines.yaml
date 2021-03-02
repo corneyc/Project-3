@@ -2,7 +2,7 @@ name: Azure Pipelines
 variables:
 
 # Azure Resource Manager service connection for pipelines
-  azureServiceConnectionId: '8a8982a2-f469-4c68-8627-a5f6efded81f'
+  azureServiceConnectionId: 'tf-azure-project'
   
   python.version: '3.7.6'
 stages:
@@ -46,7 +46,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: 'e1b9dc3d-d767-4329-887b-85b9424a7d8b'
+              azureSubscription: 'corneyc-projects-connection'
               appName: $'webAppName'
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
