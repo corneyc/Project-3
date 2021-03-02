@@ -3,9 +3,7 @@
 # Change python version to one thats appropriate for your application.
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
-trigger:
-- main
-
+name: Azure Pipelines
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureServiceConnectionId: 'eeac49b4-1894-49b3-91df-04c9be1f4656'
