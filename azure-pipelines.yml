@@ -14,7 +14,7 @@ variables:
   webAppName: 'project3'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'packer-temp'
 
   # Environment name
   environmentName: 'project3'
@@ -31,7 +31,7 @@ stages:
   jobs:
   - job: BuildJob
     pool:
-      vmImage: $(packer-temp)
+      vmImage: $(ubuntu-20.04)
     steps:
     - task: UsePythonVersion@0
       inputs:
