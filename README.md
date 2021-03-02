@@ -1,6 +1,8 @@
-
-
 # Project Overview
+
+[![CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
+
+[![Build Status](https://dev.azure.com/project2769/tf-azure-projects/_apis/build/status/corneyc.Project-3?branchName=main)](https://dev.azure.com/project2769/tf-azure-projects/_build/latest?definitionId=2&branchName=main)
 
 In this project, I'll develop and demonstrate my skills in using a variety of industry leading tools, especially Microsoft Azure, to create disposable test environments and run a variety of automated tests with the click of a button. Additionally, I'll monitor and provide insight into my application's behavior, and determine root causes by querying the application’s custom log files.
 
