@@ -52,18 +52,18 @@ stages:
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-        replaceExistingArchive: true
+        #replaceExistingArchive: true
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'Upload FakeRestAPI package'
-      artifact: drop-fakeresapi
+      artifact: drop-fakerestapi
 
 - stage: Deploy
   displayName: 'Deploy Web App'
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - deployment: DeploymentJob
+  - deployment: DeployfakeRestAPI
     pool:
       vmImage: ubuntu-20.04
     environment: $(TEST)
@@ -80,6 +80,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : project3'
             inputs:
-              azureSubscription: $(azureServiceConnectionId)
+              azureSubscription: $(corneyc-projects-connection)
               appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId)-fakerestapi.zip
+              appType: webApp
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
