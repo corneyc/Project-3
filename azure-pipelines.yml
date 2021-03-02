@@ -68,7 +68,7 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
-        backendServiceArm: 'corneyc-projects-connection'
+        backendServiceArm: $(azureServiceConnectionId)
         backendAzureRmResourceGroupName: 'tstate-rg'
         backendAzureRmStorageAccountName: 'tstate2904'
         backendAzureRmContainerName: 'tstate-cn'
@@ -81,7 +81,7 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-        environmentServiceNameAzureRM: 'corneyc-projects-connection' 
+        environmentServiceNameAzureRM: $(azureServiceConnectionId) 
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
       inputs:
