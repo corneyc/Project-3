@@ -12,7 +12,7 @@ variables:
   webAppName: 'project3'
 
   # Agent VM image name
-  vmImageName: 'packer-temp'
+  vmImageName: $(packer-temp)
 
   # Environment name
   environmentName: 'project3'
@@ -82,4 +82,4 @@ stages:
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              package: $(Pipeline.Workspace)/drop/$(Build.BuildId)-fakerestapi.zip
