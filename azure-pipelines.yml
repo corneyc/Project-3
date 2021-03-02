@@ -80,7 +80,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : project3'
             inputs:
-              azureSubscription: $(corneyc-projects-connection)
+              azureSubscription: 'corneyc-projects-connection'
               appName: $(webAppName)
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
