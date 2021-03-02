@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/lilianchirindo0362/tf-azure-proj-3/_apis/build/status/tf-azure-proj-3-CI?branchName=main)](https://dev.azure.com/lilianchirindo0362/tf-azure-proj-3/_build/latest?definitionId=2&branchName=main)
+
 
 # Project Overview
 
