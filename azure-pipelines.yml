@@ -58,10 +58,10 @@ stages:
       inputs:
         secureFile: 'authorised_key.pub'
   
-    - task: TerraformInstaller@0
-      displayName: 'Install Terraform 0.12.12'
-      inputs:
-        terraformVersion: '0.12.12'
+    #- task: TerraformInstaller@0
+      #displayName: 'Install Terraform 0.12.12'
+      #inputs:
+        #terraformVersion: '0.12.12'
 
     - task: TerraformTaskV1@0
       inputs:
