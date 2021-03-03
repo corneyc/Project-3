@@ -17,6 +17,8 @@ I have already installed, set up, configured, and used each of these during our 
 Please complete the following steps for this project:
 
 ### 1. Use Terraform to create the following resources for a specific environment tier:
+[![Build Status](https://dev.azure.com/project2769/tf-azure-projects/_apis/build/status/corneyc.Project-3?branchName=main)](https://dev.azure.com/project2769/tf-azure-projects/_build/latest?definitionId=2&branchName=main)
+[![CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
 
 I followed the instructions provided  in the `Project Starter Resources` brief folder:
 - [x] I began by opening the files in the Project Starter Resources folder using the IDE of your choice.![directories](https://github.com/corneyc/Project-3/blob/main/images/terraform_4.png)
@@ -34,8 +36,8 @@ I followed the instructions provided  in the `Project Starter Resources` brief f
 
 ![deploy web app](https://github.com/corneyc/Project-3/blob/main/images/ss_3.png)
 
-[![Build Status](https://dev.azure.com/project2769/tf-azure-projects/_apis/build/status/corneyc.Project-3?branchName=main)](https://dev.azure.com/project2769/tf-azure-projects/_build/latest?definitionId=2&branchName=main)
-[![CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
+
+
 
 
 ### 2. For the Azure DevOps CI/CD pipeline:
