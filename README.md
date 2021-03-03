@@ -17,14 +17,12 @@ I have already installed, set up, configured, and used each of these during our 
 Please complete the following steps for this project:
 
 ### 1. Use Terraform to create the following resources for a specific environment tier:
- - AppService
- - Network
- - Network Security Group
- - Public IP
- - Resource Group- Linux VM (created by you -- use a Standard_B1s size for lowest cost)
 
-![directories](https://github.com/corneyc/Project-3/blob/main/images/terraform_4.png)
-
+I followed the instructions provided  in the `Project Starter Resources` brief folder:
+- [x] I began by opening the files in the Project Starter Resources folder using the IDE of your choice.![directories](https://github.com/corneyc/Project-3/blob/main/images/terraform_4.png)
+- [x] I completed the `"Getting Started,”` and each of the "Installation" sections.
+- [x] I went on to create an `SSH key pair`- ``ssh-keygen -m PEM -t rsa -b 4096`` for the linux machine. I used the reference to the file for the `Dev Environment`. I also used the actual public key itself when using Terraform in the CI/CD pipeline.
+- [x] Lastly, I ran the terraform commands to create the resources in Azure ``(init,plan,apply)``.
 
 ![backend](https://github.com/corneyc/Project-3/blob/main/images/terraform_backend_5.png)
 
