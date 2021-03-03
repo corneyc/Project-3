@@ -36,15 +36,6 @@ stages:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
 
-    #- script: |
-        #python -m venv antenv
-        #source antenv/bin/activate
-        #python -m pip install --upgrade pip
-        #pip install setup
-        #pip install -r requirements.txt
-      #workingDirectory: $(System.DefaultWorkingDirectory)
-      #displayName: "Install requirements"
-    
     #- task: InstallSSHKey@0
       #displayName: 'Install an SSH key'
       #inputs:
@@ -122,7 +113,7 @@ stages:
 
 
 - stage: Deploy
-  displayName: 'Deploy Web App'
+  displayName: 'Deploy Web App to custom VM'
   dependsOn: Build
   condition: succeeded()
   jobs:
@@ -134,12 +125,6 @@ stages:
       runOnce:
         deploy:
           steps:
-
-          - task: UsePythonVersion@0
-            inputs:
-              versionSpec: '$(pythonVersion)'
-            displayName: 'Use Python version'
-
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : project3'
             inputs:
@@ -147,3 +132,4 @@ stages:
               appName: $(webAppName)
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+ 
