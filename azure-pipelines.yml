@@ -88,7 +88,7 @@ stages:
         command: plan
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-        #environmentServiceNameAzureRM: $(azureServiceConnectionId)
+        environmentServiceNameAzureRM: $(azureServiceConnectionId)
         #backendServiceArm: $(azureServiceConnectionId) 
       displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
