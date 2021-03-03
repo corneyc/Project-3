@@ -3,13 +3,17 @@
 In this project, I'll develop and demonstrate my skills in using a variety of industry leading tools, especially Microsoft Azure, to create disposable test environments and run a variety of automated tests with the click of a button. Additionally, I'll monitor and provide insight into my application's behavior, and determine root causes by querying the application’s custom log files.
 
 ## Project Tools and Environment
-I've become familiar with the following tools :
+I've become familiar with the following tools 
 
-|:white_check_mark: Azure DevOps
-|:white_check_mark: Selenium
-|:white_check_mark: Terraform
-|:white_check_mark: JMeter
-|:white_check_mark: Postman
+:white_check_mark:  Azure DevOps 
+
+:white_check_mark:  Selenium
+
+:white_check_mark:  Terraform
+
+:white_check_mark:  JMeter
+
+:white_check_mark:  Postman
 
 I have already installed, set up, configured, and used each of these during our lessons in this course. In this project I will apply all of them together, and demonstrate all of the skills and concepts I’ve learned with these tools in one project.
 
