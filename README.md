@@ -18,7 +18,7 @@ Please complete the following steps for this project:
 
 ### 1. Use Terraform to create the following resources for a specific environment tier:
 [![Build Status](https://dev.azure.com/project2769/tf-azure-projects/_apis/build/status/corneyc.Project-3?branchName=main)](https://dev.azure.com/project2769/tf-azure-projects/_build/latest?definitionId=2&branchName=main)
-[![CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
+[![GitHub CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
 
 I followed the instructions provided  in the `Project Starter Resources` brief folder:
 - [x] I began by opening the files in the Project Starter Resources folder using the IDE of your choice.![directories](https://github.com/corneyc/Project-3/blob/main/images/terraform_4.png)
@@ -27,6 +27,7 @@ I followed the instructions provided  in the `Project Starter Resources` brief f
 - [x] Lastly, I ran the terraform commands to create the resources in Azure ``(init,plan,apply)``.
 
 The following screenshots illustrate the `State backend and the Service Principal`configured and terraform commands ran.
+
 ![backend](https://github.com/corneyc/Project-3/blob/main/images/terraform_backend_5.png)
 
 ![s_principal](https://github.com/corneyc/Project-3/blob/main/images/Terraform_6.png)
