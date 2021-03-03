@@ -28,6 +28,19 @@ Please complete the following steps for this project:
  - Public IP
  - Resource Group- Linux VM (created by you -- use a Standard_B1s size for lowest cost)
 
+![directories](https://github.com/corneyc/Project-3/blob/main/images/terraform_4.png)
+
+
+![backend](https://github.com/corneyc/Project-3/blob/main/images/terraform_backend_5.png)
+
+![s_principal](https://github.com/corneyc/Project-3/blob/main/images/Terraform_6.png)
+
+![build/ci/cd](https://github.com/corneyc/Project-3/blob/main/images/ss_1.png)
+
+![build](https://github.com/corneyc/Project-3/blob/main/images/ss_2.png)
+
+![deploy web app](https://github.com/corneyc/Project-3/blob/main/images/ss_3.png)
+
 ### 2. For the Azure DevOps CI/CD pipeline:
  - Create the tasks that allow for Terraform to run and create the above resources.
  - Execute Test Suites for:
