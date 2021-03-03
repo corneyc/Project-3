@@ -66,7 +66,7 @@ stages:
     - task: TerraformTaskV1@0
       inputs:
         provider: 'azurerm'
-        command: init
+        command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         backendServiceArm: $(azureServiceConnectionId)
         backendAzureRmResourceGroupName: 'tstate-rg'
@@ -77,7 +77,7 @@ stages:
 
     - task: TerraformTaskV1@0
       inputs:
-        command: validate
+        command: 'validate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
         backendAzureRmResourceGroupName: 'tstate-rg'
         backendAzureRmStorageAccountName: 'tstate2904'
@@ -93,14 +93,12 @@ stages:
         #backendServiceArm: $(azureServiceConnectionId) 
       #displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
-      
       inputs:
         provider: 'azurerm'
-        command: Apply
+        command: 'Apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId) 
-        backendServiceArm: $(azureServiceConnectionId)
       displayName: 'Tarraform Apply'  
 
     - task: ArchiveFiles@2
