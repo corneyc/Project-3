@@ -84,15 +84,15 @@ stages:
         backendAzureRmStorageAccountName: 'tstate2904'
       displayName: 'Run terraform validate'
     
-    #- task: TerraformTaskV1@0
-      #inputs:
-        #provider: 'azurerm'
-        #command: plan
-        #workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
-        #commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-        #environmentServiceNameAzureRM: $(azureServiceConnectionId)
-        #backendServiceArm: $(azureServiceConnectionId) 
-      #displayName: 'Tarraform Plan'
+    - task: TerraformTaskV1@0
+      inputs:
+        provider: 'azurerm'
+        command: plan
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
+        environmentServiceNameAzureRM: $(azureServiceConnectionId)
+        backendServiceArm: $(azureServiceConnectionId) 
+      displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
       displayName: 'Deploy Cloud Infrastructure'
       inputs:
