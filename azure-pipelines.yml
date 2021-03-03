@@ -132,4 +132,52 @@ stages:
               appName: $(webAppName)
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
- 
+
+- stage: Tests
+  jobs:
+
+  - job: Integration
+    displayName: 'Integration Tests'
+    pool:
+      vmImage: ubuntu-20.04
+    steps:
+
+    - task: Bash@3
+      displayName: 'Install Postman & Newman'
+      inputs:
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+          pwd
+          sudo snap install postman
+          sudo npm install -g newman
+          sudo npm install newman-reporter-junitfull -g      
+    - task: Bash@3
+      displayName: 'Regression Tests'
+      inputs:
+        workingDirectory: 'postman/StarterAPIs.json'
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+          newman run RegressionTest.json \
+            -e MyEnv.json \
+            -r cli,junitfull \
+            --reporter-junitfull-export JUnitReportRegression.xml
+    
+    - task: Bash@3
+      displayName: 'Data Validation Tests'
+      inputs:
+        workingDirectory: 'postman'
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+          newman run ValidationTest.json \
+            -e MyEnv.json \
+            -r cli,junitfull \
+            --reporter-junitfull-export JUnitReportValidation.xml
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/JUnitReport*.xml'
+        testRunTitle: 'Publish test results'
+        searchFolder: 'postman' 
