@@ -82,7 +82,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
         backendAzureRmResourceGroupName: 'tstate-rg'
         backendAzureRmStorageAccountName: 'tstate2904'
-      displayName: 'Run terraform validate'
+      displayName: 'Run Terraform validate'
     
     - task: TerraformTaskV1@0
       inputs:
@@ -92,9 +92,9 @@ stages:
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId)
         backendServiceArm: $(azureServiceConnectionId) 
-      displayName: 'Tarraform Plan'
+      displayName: 'Terraform Plan'
     - task: TerraformTaskV1@0
-      displayName: 'Deploy Cloud Infrastructure'
+      displayName: 'Terraform Apply and Deploy Cloud Infrastructure'
       inputs:
         provider: 'azurerm'
         command: 'apply'
