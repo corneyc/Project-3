@@ -48,7 +48,7 @@ stages:
     - task: InstallSSHKey@0
       displayName: 'Install an SSH key'
       inputs:
-        knownHostsEntry: 'AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+        knownHostsEntry: 'AAAAB3NzaC1yc2EAAAADAQABAAABgQDMXGz4sCr5PJEDPum/WuhZZ/Zsk2r9fgiuzbIJwaQh3VKZPvZwyUZ7G64UIP/sq76MjUsqnInB8cM/OBMwgy/3cXOhUJGcp43N4gh27KnW1FPinEIjDd5W7KxnpgNngaNo6M1eRHNa2a67pP8mEYIxkrlniyNA99YwC40ZGaOo7V82Hjd6AyTIIibtupId8+clQy4OaWSJ2VFLy9V852pnHPD2xaXnQ8m7cOsHz2rXnbCXTQ3M1XXHnRIM1P/yi1LddPtVHOuxi22c52E+O4dBsgRvvDCVbBqyyZP6SoRSzo7FF4VMLk1b6/lvDuJK8BDdXr3tYZZpBgd7K7rdxJELpYslk0abkYe96qdAYysERHDh+lJhMXn2f0WvE4Tkb36tiT0cfxwpMBHEJG1CBruIwO7ukwG+lG+CTHykZgXgaJ1Q/qK1728wo2BjkIW5FLAn2fknrs3y8DViZsRUDz0+Alt4iveaq4o+UEk/Tf8PbtzuLg4/XNoBneeav0AruJE='
         sshPublicKey: '$(authorised_key)'
         sshKeySecureFile: 'authorised_keys'
     
@@ -58,7 +58,7 @@ stages:
       inputs:
         secureFile: 'authorised_key.pub'
   
-    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+    - task: TerraformInstaller@0
       displayName: 'Install Terraform 0.12.12'
       inputs:
         terraformVersion: '0.12.12'
