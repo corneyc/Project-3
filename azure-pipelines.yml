@@ -94,7 +94,7 @@ stages:
       #displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
       inputs:
-        provider: 'azurerm'
+        #provider: 'azurerm'
         command: 'Apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
