@@ -23,4 +23,4 @@ admin_username = "corneyc"
 #public_key_path = "id_rsa.pub"
 
 # public key on local machine
-public_key_path = "~/.ssh/udacity.pub"
+public_key_path = "~/.ssh/myKey.pub"
