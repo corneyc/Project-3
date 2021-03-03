@@ -67,7 +67,7 @@ stages:
       displayName: 'Initialize Terraform'
       inputs:
         provider: 'azurerm'
-        command: init
+        command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         backendServiceArm: $(azureServiceConnectionId)
         backendAzureRmResourceGroupName: 'tstate-rg'
@@ -78,7 +78,7 @@ stages:
 
     - task: TerraformTaskV1@0
       inputs:
-        command: validate
+        command: 'validate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
         backendAzureRmResourceGroupName: 'tstate-rg'
         backendAzureRmStorageAccountName: 'tstate2904'
@@ -97,7 +97,7 @@ stages:
       displayName: 'Deploy Cloud Infrastructure'
       inputs:
         provider: 'azurerm'
-        command: Apply
+        command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId) 
