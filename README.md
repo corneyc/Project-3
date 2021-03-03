@@ -5,11 +5,11 @@ In this project, I'll develop and demonstrate my skills in using a variety of in
 ## Project Tools and Environment
 I've become familiar with the following tools :
 
-:white_check_mark: Azure DevOps
-:white_check_mark: Selenium
-:white_check_mark: Terraform
-:white_check_mark: JMeter
-:white_check_mark: Postman
+|:white_check_mark: Azure DevOps
+|:white_check_mark: Selenium
+|:white_check_mark: Terraform
+|:white_check_mark: JMeter
+|:white_check_mark: Postman
 
 I have already installed, set up, configured, and used each of these during our lessons in this course. In this project I will apply all of them together, and demonstrate all of the skills and concepts I’ve learned with these tools in one project.
 
