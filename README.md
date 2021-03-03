@@ -15,7 +15,7 @@ I've become familiar with the following tools
 
 :white_check_mark:  Postman
 
-I have already installed, set up, configured, and used each of these during our lessons in this course. In this project I will apply all of them together, and demonstrate all of the skills and concepts I’ve learned with these tools in one project.
+I have `installed`, `set up`, `configured`, and used each of these during our lessons in this course. In this project I will apply all of them together, and demonstrate all of the skills and concepts I’ve learned with these tools in one project.
 
 ## Project Steps
 Please complete the following steps for this project:
