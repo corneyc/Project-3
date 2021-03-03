@@ -62,7 +62,9 @@ stages:
       #displayName: 'Install Terraform 0.12.12'
       #inputs:
         #terraformVersion: '0.12.12'
-
+    # Install Apple certificate
+# Install an Apple certificate required to build on a macOS agent machine
+    
     - task: TerraformTaskV1@0
       displayName: 'Initialize Terraform'
       inputs:
