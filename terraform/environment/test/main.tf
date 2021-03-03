@@ -1,16 +1,16 @@
-/*terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.48.0"
-    }
-  }
-}*/
+#terraform {
+  #required_providers {
+    #azurerm = {
+      #source  = "hashicorp/azurerm"
+      #version = "=2.48.0"
+    #}
+  #}
+#}
 provider "azurerm" {
-  /*tenant_id       = var.tenant_id
-  subscription_id = var.subscription_id
-  client_id       = var.client_id
-  client_secret   = var.client_secret*/
+  #tenant_id       = var.tenant_id
+  #subscription_id = var.subscription_id
+  #lient_id       = var.client_id
+  #client_secret   = var.client_secret*/
   features {}
 }
 terraform {
