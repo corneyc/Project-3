@@ -5,11 +5,11 @@ In this project, I'll develop and demonstrate my skills in using a variety of in
 ## Project Tools and Environment
 I've become familiar with the following tools :
 
-- Azure DevOps
-- Selenium
-- Terraform
-- JMeter
-- Postman
+:white_check_mark: Azure DevOps
+:white_check_mark: Selenium
+:white_check_mark: Terraform
+:white_check_mark: JMeter
+:white_check_mark: Postman
 
 I have already installed, set up, configured, and used each of these during our lessons in this course. In this project I will apply all of them together, and demonstrate all of the skills and concepts I’ve learned with these tools in one project.
 
@@ -17,6 +17,15 @@ I have already installed, set up, configured, and used each of these during our 
 Please complete the following steps for this project:
 
 ### 1. Use Terraform to create the following resources for a specific environment tier:
+Resource Created with Terraform | Done
+:--- | :---:
+AppService | :white_check_mark:
+Network | :white_check_mark:
+Network Security Group | :white_check_mark:
+Public IP | :white_check_mark:
+Resource Group | :white_check_mark:
+Linux VM (created using Packer -- using a Standard_B1s size for lowest cost) | :white_check_mark:
+
 [![Build Status](https://dev.azure.com/project2769/tf-azure-projects/_apis/build/status/corneyc.Project-3?branchName=main)](https://dev.azure.com/project2769/tf-azure-projects/_build/latest?definitionId=2&branchName=main)
 [![CI](https://github.com/corneyc/Project-3/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/corneyc/Project-3/actions/workflows/main.yml)
 
