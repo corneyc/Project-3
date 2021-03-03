@@ -52,11 +52,11 @@ stages:
         #sshPublicKey: '$(authorised_key)'
         #sshKeySecureFile: 'authorised_keys'
     
-    - task: DownloadSecureFile@1
-      name: authorised_key
-      displayName: 'Download Public Key'
-      inputs:
-        secureFile: 'authorised_key.pub'
+    #- task: DownloadSecureFile@1
+      #name: authorised_key
+      #displayName: 'Download Public Key'
+      #inputs:
+        #secureFile: 'authorised_key.pub'
   
     #- task: TerraformInstaller@0
       #displayName: 'Install Terraform 0.12.12'
