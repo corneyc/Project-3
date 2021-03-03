@@ -51,18 +51,19 @@ stages:
         #knownHostsEntry: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
         #sshPublicKey: '$(udacityPubKey)'
         #sshKeySecureFile: 'myKey'
-    
+
+  #Uploaded ssh keys into secure file in Devops  
     - task: DownloadSecureFile@1
       name: udacity_public_key
       displayName: 'Download Public Key'
       inputs:
         secureFile: 'myKey.pub'
   
+  # Not installing Terraform because its already installed on the machine
     #- task: TerraformInstaller@0
       #displayName: 'Install Terraform 0.12.12'
       #inputs:
-        #terraformVersion: '0.12.12'
-        
+        #terraformVersion: '0.12.12'     
     - task: TerraformTaskV1@0
       displayName: 'Initialize Terraform'
       inputs:
@@ -75,7 +76,6 @@ stages:
         backendAzureRmContainerName: 'tstate-cn'
         backendAzureRmKey: 'terraform.tfstate'
       
-
     - task: TerraformTaskV1@0
       inputs:
         command: 'validate'
