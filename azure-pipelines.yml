@@ -64,6 +64,7 @@ stages:
         #terraformVersion: '0.12.12'
 
     - task: TerraformTaskV1@0
+      displayName: 'Initialize Terraform'
       inputs:
         provider: 'azurerm'
         command: init
@@ -73,7 +74,7 @@ stages:
         backendAzureRmStorageAccountName: 'tstate2904'
         backendAzureRmContainerName: 'tstate-cn'
         backendAzureRmKey: 'terraform.tfstate'
-      displayName: 'Initialize Terraform'
+      
 
     - task: TerraformTaskV1@0
       inputs:
@@ -93,13 +94,14 @@ stages:
         #backendServiceArm: $(azureServiceConnectionId) 
       #displayName: 'Tarraform Plan'
     - task: TerraformTaskV1@0
+      displayName: 'Deploy Cloud Infrastructure'
       inputs:
         provider: 'azurerm'
         command: Apply
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
         environmentServiceNameAzureRM: $(azureServiceConnectionId) 
-      displayName: 'Tarraform Apply'  
+        
 
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
