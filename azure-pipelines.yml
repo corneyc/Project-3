@@ -110,7 +110,6 @@ stages:
       displayName: 'Upload UI Tests definition'
       artifact: drop_ui_tests
 
-
 - stage: Deploy
   displayName: 'Deploy Web App to custom VM'
   dependsOn: Build
@@ -181,7 +180,59 @@ stages:
         testRunTitle: 'Publish test results'
         searchFolder: 'postman' 
 
- # Insert Jmeter here
+  - job: Performance
+    displayName: 'Performance Tests'
+    pool:
+      vmImage: 'ubuntu-20.04'
+    steps:
+
+    - task: JMeterInstaller@0
+      displayName: 'Install JMeter 5.2.1'
+      inputs:
+        jmeterVersion: '5.2.1'
+    
+    - task: Bash@3
+      displayName: 'Endurance Test Suite'
+      inputs:
+        targetType: 'inline'
+        script: |
+          jmeter -n \
+            -t automatedtesting/jmeter/EnduranceTestSuite.jmx \
+            -l endurance-test-report/endurance-results.jtl \
+            -e \
+            -o endurance-test-report
+    - task: publishhtmlreport@1
+      displayName: 'Publish Endurance Test Results'
+      inputs:
+        htmlType: 'Jmeter'
+        JmeterReportsPath: '$(Build.SourcesDirectory)/endurance-test-report'    
+
+    - task: Bash@3
+      displayName: 'Stress Test Suite'
+      inputs:
+        targetType: 'inline'
+        script: |
+          jmeter -n \
+            -t automatedtesting/jmeter/StressTestSuite.jmx \
+            -l stress-test-report/stress-results.jtl \
+            -e \
+            -o stress-test-report
+    - task: publishhtmlreport@1
+      displayName: 'Publish Stress Test Results'
+      inputs:
+        htmlType: 'Jmeter'
+        JmeterReportsPath: '$(Build.SourcesDirectory)/stress-test-report'    
+        
+        
+    - task: Bash@3
+      displayName: 'Print Performance Test Logs'
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lah endurance-test-report/
+          ls -lah stress-test-report/
+          cat jmeter.log        
+
 
   - deployment: Functional
     displayName: 'Functional UI Tests'
