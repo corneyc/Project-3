@@ -26,6 +26,7 @@ I followed the instructions provided  in the `Project Starter Resources` brief f
 - [x] I went on to create an `SSH key pair`- ``ssh-keygen -m PEM -t rsa -b 4096`` for the linux machine. I used the reference to the file for the `Dev Environment`. I also used the actual public key itself when using Terraform in the CI/CD pipeline.
 - [x] Lastly, I ran the terraform commands to create the resources in Azure ``(init,plan,apply)``.
 
+The following screenshots illustrate the `State backend and the Service Principal`configured and terraform commands ran.
 ![backend](https://github.com/corneyc/Project-3/blob/main/images/terraform_backend_5.png)
 
 ![s_principal](https://github.com/corneyc/Project-3/blob/main/images/Terraform_6.png)
