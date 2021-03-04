@@ -66,16 +66,33 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
         commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      displayName: 'Upload package'
-      artifact: drop
+        environmentServiceNameAzureRM: 'corneyc-projects-connection'
+
+    - task: TerraformTaskV1@0
+      displayName: 'Plan Terraform'
+      inputs:
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
+        environmentServiceNameAzureRM: 'corneyc-projects-connection'    
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive FakeRestAPI'
+      inputs:
+        rootFolderOrFile: 'jmeter/fakerestapi'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+      displayName: 'Upload FakeRestAPI Package'
+      artifact: drop-fakerestapi
 
 - stage: Deploy
-  displayName: 'Deploy Web App'
-  dependsOn: Build
+  displayName: 'Deploy app to custom VM'
   condition: succeeded()
   jobs:
-  - deployment: DeploymentJob
+  - deployment: DeployFakeRestAPI
     pool:
       vmImage: $(vmImageName)
     environment: $(environmentName)
@@ -83,15 +100,12 @@ stages:
       runOnce:
         deploy:
           steps:
+            - task: AzureWebApp@1
+              displayName: 'Deploy Azure Web App'
+              inputs:
+                azureSubscription: 'anja-subscription-service-connection'
+                appName: $(webAppName)
+                appType: webApp
+                package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-          - task: UsePythonVersion@0
-            inputs:
-              versionSpec: '$(pythonVersion)'
-            displayName: 'Use Python version'
 
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : project3'
-            inputs:
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
