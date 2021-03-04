@@ -148,3 +148,27 @@ stages:
                   #! /bin/bash
                   pwd
                   find .
+
+  - deployment: VMDeploy
+    displayName: 'Deploy VM'
+    environment:
+      name:  'TEST'
+      resourceType: VirtualMachine
+      tags: test, packer-created-vm
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                #! /bin/bash
+              
+                sudo apt-get upgrade -y
+                sudo apt-get install python3-pip -y
+                sudo apt-get install unzip -y
+                sudo apt-get install -y chromium-browser
+                pip3 install selenium
+                export PATH=$PATH:some/path
