@@ -132,24 +132,20 @@ stages:
 
     displayName: 'Deploy app to custom VM'
     pool:
-      vmImage: ubuntu-20.04
+     
+     vmImage: 'Ubuntu-20.04'
     environment: $(TEST)
-    vmImage: 'Ubuntu-20.04'
-    environment: 'TEST'
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : project3'
-            displayName: 'Deploy Azure Web App'
-            inputs:
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
-              #azureSubscription: 'azureSubscription'
-              appName: $'webAppName'
-              appType: webApp
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+            - task: AzureWebApp@1
+              displayName: 'Deploy Azure Web App'
+              inputs:
+                azureSubscription: $(azureServiceConnectionId)
+                appName: $'webAppName'
+                appType: webApp
+                package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
 #- stage: Tests
   #jobs:
