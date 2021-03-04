@@ -43,10 +43,10 @@ stages:
       displayName: 'Download Public Key'
       inputs:
         secureFile: 'myKey.pub'
-    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
-      displayName: 'Install Terraform'
-      inputs:
-        terraformVersion: '0.14.7'
+    #- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+      #displayName: 'Install Terraform'
+      #inputs:
+        #terraformVersion: '0.14.7'
   
     - task: TerraformTaskV1@0 
       displayName: 'Initialize Terraform'
