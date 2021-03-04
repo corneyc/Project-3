@@ -114,10 +114,10 @@ steps:
     displayName: 'Upload UI Tests definition'
     artifact: drop_ui_tests
 
-- stage: Deploy
-  displayName: 'Deploy Web App to custom VM'
-  dependsOn: Build
-  condition: succeeded()
+  - stage: Deploy
+    displayName: 'Deploy Web App to custom VM'
+    dependsOn: Build
+    condition: succeeded()
   jobs:
   - deployment: DeployfakeRestAPI
     pool:
