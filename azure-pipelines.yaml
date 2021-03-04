@@ -11,6 +11,8 @@ variables:
   # Azure Resource Manager connection created during pipeline creation
   azureServiceConnectionId: '4b5e9f3a-d138-443c-8dbd-f9ac3a99843f'
 
+  azureSubscription: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
+
   # Web app name
   webAppName: 'project3'
 
@@ -106,18 +108,17 @@ stages:
       displayName: 'Upload FakeRestAPI Package'
       artifact: drop-fakerestapi
 
-    - publish: selenium/login.py
-      displayName: 'Upload UI Tests definition'
-      artifact: drop-ui-tests
+    #- publish: selenium/login.py
+      #displayName: 'Upload UI Tests definition'
+      #artifact: drop-ui-tests
 
 - stage: Deploy
-  displayName: 'Deploy app to custom VM'
-  condition: succeeded()
   jobs:
   - deployment: DeployFakeRestAPI
+    displayName: 'Deploy app to custom VM'
     pool:
       vmImage: $(vmImageName)
-    environment: $(environmentName)
+    environment: 'TEST'
     strategy:
       runOnce:
         deploy:
@@ -125,10 +126,11 @@ stages:
             - task: AzureWebApp@1
               displayName: 'Deploy Azure Web App'
               inputs:
-                azureSubscription: $(azureServiceConnectionId)
-                appName: $(webAppName)
-                appType: webApp
-                package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+                azureSubscription: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
+                appType: 'webApp'
+                appName: '$(webAppName)'
+                package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+                deploymentMethod: 'auto'
 
             - task: Bash@3
               displayName: 'Install Postman & Newman'
@@ -141,34 +143,27 @@ stages:
                   sudo npm install newman-reporter-junitfull -g      
 
             - task: Bash@3
-              displayName: 'Double check directory contents Deploy Stage'
+              displayName: 'Install Selenium'
               inputs:
                 targetType: 'inline'
                 script: |
                   #! /bin/bash
+
+                  sudo apt-get upgrade -y
+                  sudo apt-get install python3-pip -y
+                  sudo apt-get install unzip -y
+                  sudo apt-get install -y chromium-browser
+                  pip3 install selenium
+                  export PATH=$PATH:some/path
+
+            - task: Bash@3
+              displayName: 'Selenium Tests'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  #! /bin/bash
+                
+                  # TODO: Execute test suite for Selenium  
+                  echo 'hello from custom VM'
                   pwd
                   find .
-
-  - deployment: VMDeploy
-    displayName: 'Deploy VM'
-    environment:
-      name:  'TEST'
-      resourceType: VirtualMachine
-      tags: test, packer-created-vm
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
-                #! /bin/bash
-                
-                sudo apt-get upgrade -y
-                sudo apt-get install python3-pip -y
-                sudo apt-get install unzip -y
-                sudo apt-get install -y chromium-browser
-                pip3 install selenium
-                export PATH=$PATH:some/path
