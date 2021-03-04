@@ -17,7 +17,7 @@ variables:
   webAppName: 'project3'
 
   # Agent VM image name:20.04
-  vmImageName: '20.04'
+  vmImageName: 'latest-ubuntu'
 
   # Environment name
   environmentName: 'project3'
