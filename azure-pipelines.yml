@@ -135,8 +135,8 @@ steps:
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-- stage: Tests
-  jobs:
+  - stage: Tests
+    jobs:
 
   - job: Integration
     displayName: 'Integration Tests'
