@@ -261,6 +261,6 @@ stages:
       echo 'Hello from a custom VM with pre-installed Selenium, Chromium-browser & Chromedriver!'
         source env/bin/activate
         
-        export PATH=$PATH:`pwd` 
+        export PATH=$PATH:`pwd`
         python3 ../drop-ui-tests/login.py
         cat selenium.log
