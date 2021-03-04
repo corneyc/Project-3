@@ -16,8 +16,8 @@ variables:
   # Web app name
   webAppName: 'project3'
 
-  # Agent VM image name:20.04
-  vmImageName: 'latest-ubuntu'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
 
   # Environment name
   environmentName: 'project3'
@@ -104,9 +104,9 @@ stages:
       displayName: 'Upload FakeRestAPI Package'
       artifact: drop-fakerestapi
 
-    - publish: selenium/login.py
-      displayName: 'Upload UI Tests definition'
-      artifact: drop-ui-tests
+    #- publish: selenium/login.py
+      #displayName: 'Upload UI Tests definition'
+      #artifact: drop-ui-tests
 
 - stage: Deploy
   jobs:
