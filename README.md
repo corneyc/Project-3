@@ -60,7 +60,7 @@ The following screenshots illustrate the `State backend and the Service Principa
     
     ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install_selenium.png)
     
-    -[] JMeter - runs against the AppService in the deployment stage
+    -[ ] JMeter - runs against the AppService in the deployment stage
     
     ![Jmeter]()
 
