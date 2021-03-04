@@ -69,7 +69,7 @@ stages:
         environmentServiceNameAzureRM: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
 
     - task: TerraformTaskV1@0
-      displayName: 'Plan Terraform'
+      displayName: 'Apply Terraform'
       inputs:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
