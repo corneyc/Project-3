@@ -17,8 +17,8 @@ variables:
   # Environment name
   environmentName: 'test'
 
-  # this will not work because the secret variable needs to be mapped as env
-  UDACITY_PUB_KEY: $(udacityPubKey) 
+  # secret variable 
+  sshPublicKey: 'udacityPubKey'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -38,13 +38,6 @@ stages:
       inputs:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
-
-  - task: Bash
-    inputs:
-      targetType: 'inline'
-      script: |
-  env:
-    UDACITY_PUB_KEY: $(udacityPubKey)
 
     - task: InstallSSHKey@0
       displayName: 'Install an SSH key'
