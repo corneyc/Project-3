@@ -38,7 +38,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     #Needed for terraform VM deployment
-    - task: terraformInstaller@0
+    - task: TerraformInstaller@0
       displayName: "Install Terraform $(tf_version)"
       inputs:
         terraformVersion: "$(tf_version)"
