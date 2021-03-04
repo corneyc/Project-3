@@ -37,16 +37,35 @@ stages:
       inputs:
         knownHostsEntry: ''
         sshPublicKey: '$(udacityPubKey)'
-        sshKeySecureFile: 'udacity_id_rsa'
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
+        sshKeySecureFile: 'mykey'
+    - task: DownloadSecureFile@1
+      name: udacity_public_key
+      displayName: 'Download Public Key'
       inputs:
-        rootFolderOrFile: '$(projectRoot)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
+        secureFile: 'myKey.pub'
+    - task: TerraformInstaller@0
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: '0.14.7'
+  
+    - task: TerraformTaskV1@0 
+      displayName: 'Initialize Terraform'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        backendServiceArm: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
+        backendAzureRmResourceGroupName: 'tstate-rg'
+        backendAzureRmStorageAccountName: 'tstate2904'
+        backendAzureRmContainerName: 'tstate-cn'
+        backendAzureRmKey: 'terraform.state'
 
+    - task: TerraformTaskV1@0
+      displayName: 'Plan Terraform'
+      inputs:
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
