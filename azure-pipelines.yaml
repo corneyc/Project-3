@@ -38,7 +38,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     #Needed for terraform VM deployment
-    - task: TerraformInstaller@0
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: "Install Terraform $(tf_version)"
       inputs:
         terraformVersion: "$(tf_version)"
