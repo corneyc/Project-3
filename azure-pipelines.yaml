@@ -4,6 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 name: Azure Pipelines
+trigger: 
+  - main
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
@@ -24,6 +26,9 @@ variables:
   # Python version: 3.7.6
   pythonVersion: '3.7.6'
 
+  # Terraform version 0.14.7
+  tf_version: "0.14.7" 
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -33,6 +38,11 @@ stages:
       vmImage: $(vmImageName)
     steps:
     #Needed for terraform VM deployment
+    - task: terraformInstaller@0
+      displayName: "Install Terraform $(tf_version)"
+      inputs:
+        terraformVersion: "$(tf_version)"
+
     #- task: InstallSSHKey@0
       #inputs:
         #knownHostsEntry: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3gXrVv7Fj4EEI4zAt9dvnM6M8eV/O2SEjnMVMZGfRLPCzqgXsj4VKk6mU1ihP1aFXhhMUlKes4nIaKKx28trtQBBR8Uy53nUlaa2yaoXaaX+KvURR1TAsjHZNL/0JCGovGztg7yo1Hhi5EO4JMDvvY9gy7vAThSuPnZMeLj4ZpWXfuVUPa3HwQZSpHlY+T5/WBNSfrkf+TwH1rWCoKKqppU3e3bYQ4slk2/I9DWzkMBKdDxTKzQYTJyAhbMMtkxT1+AkWlPsx5o2h5VwsAtLdXLlbTpoxUDvRWfkmgA/w69UMv2ly5kIoj0KiIZ3kyTnSBT1D6/DtM/JX8A44Rf4CcQXxHiEzBwiMBNLu0U3jIACNaOW+2MmxRrFoEc/EMqvV83SLxBsMPMV4nHFoKaOFr+XI5vQId05yKx90u3wV6fUCoXUgFvdJz9seWxQcLWh5v3IV3vhGVdIJvwci3yDCczkAa6D07ns9NPoQ+hz5nAI4t7fIlDPuPj/OT69YjfU= corneliuspchakabva@Corneliuss-Mini'
