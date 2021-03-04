@@ -123,14 +123,13 @@ stages:
       displayName: 'Upload UI Tests definition'
       artifact: drop_ui_tests
 
-      artifact: drop-ui-tests
 - stage: Deploy
   displayName: 'Deploy Web App to custom VM'
   dependsOn: Build
   condition: succeeded()
   jobs:
   - deployment: DeployfakeRestAPI
-  - deployment: DeployFakeRestAPI
+
     displayName: 'Deploy app to custom VM'
     pool:
       vmImage: ubuntu-20.04
