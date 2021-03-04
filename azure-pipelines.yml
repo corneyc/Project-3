@@ -146,13 +146,13 @@ stages:
                 appType: webApp
                 package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-#- stage: Tests
-  #jobs:
+- stage: Tests
+  jobs:
 
-  #- job: Integration
-    #displayName: 'Integration Tests'
-    #pool:
-      #vmImage: ubuntu-20.04
+  - job: Integration
+    displayName: 'Integration Tests'
+    pool:
+      vmImage: ubuntu-20.04
     steps:
     - task: Bash@3
       displayName: 'Install Postman & Newman'
