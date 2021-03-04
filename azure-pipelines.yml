@@ -118,7 +118,7 @@ steps:
     displayName: 'Deploy Web App to custom VM'
     dependsOn: Build
     condition: succeeded()
-  jobs:
+    jobs:
   - deployment: DeployfakeRestAPI
     pool:
       vmImage: ubuntu-20.04
