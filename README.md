@@ -63,9 +63,15 @@ The following screenshots illustrate the `State backend and the Service Principa
  
     - Postman - runs during build stage
     
+    ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install%20postman.png)
+    
     - Selenium - runs on the linux VM in the deployment stage
     
+    ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install%20selenium.png)
+    
     - JMeter - runs against the AppService in the deployment stage
+    
+    ![Jmeter]()
 
 ### 3. For Postman:
 - Create a Regression Test Suite from the Starter APIs. Use the Publish Test Results task to publish the test results to Azure Pipelines.
