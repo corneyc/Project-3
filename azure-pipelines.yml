@@ -140,7 +140,6 @@ stages:
       #vmImage: ubuntu-20.04
     
     steps:
-
         - task: Bash@3
           displayName: 'Install Postman & Newman'
           inputs:
