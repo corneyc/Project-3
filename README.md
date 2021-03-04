@@ -63,11 +63,11 @@ The following screenshots illustrate the `State backend and the Service Principa
  
     - Postman - runs during build stage
     
-    ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install postman.png)
+    ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install_postman.png)
     
     - Selenium - runs on the linux VM in the deployment stage
     
-    ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install selenium.png)
+    ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install_selenium.png)
     
     - JMeter - runs against the AppService in the deployment stage
     
