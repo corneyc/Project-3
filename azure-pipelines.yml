@@ -33,19 +33,19 @@ stages:
   - job: BuildJob
     pool:
       vmImage: ubuntu-20.04
-  steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(pythonVersion)'
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
 
-    - task: InstallSSHKey@0
-      displayName: 'Install an SSH key'
-      inputs:
-        knownHostsEntry: 'SHA256:n6Pm5/0kHC7RDoR5GuFsngb5/X3AaGGbKok7Fy1Pyew corneliuspchakabva@Corneliuss-Mini
+  - task: InstallSSHKey@0
+    displayName: 'Install an SSH key'
+    inputs:
+      knownHostsEntry: 'SHA256:n6Pm5/0kHC7RDoR5GuFsngb5/X3AaGGbKok7Fy1Pyew corneliuspchakabva@Corneliuss-Mini
 '
-        sshPublicKey: '$(udacityPubKey)'
-        sshKeySecureFile: 'myKey'
+      sshPublicKey: '$(udacityPubKey)'
+      shKeySecureFile: 'myKey'
 
   #Uploaded ssh keys into secure file in Devops  
     - task: DownloadSecureFile@1
