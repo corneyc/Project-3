@@ -186,11 +186,11 @@ stages:
     #displayName: 'Performance Tests'
     #pool:
       #vmImage: 'ubuntu-20.04'
-
+    
     steps:
-      - task: JMeterInstaller@0
-        displayName: 'Install JMeter 5.2.1'
-        inputs:
+    - task: JMeterInstaller@0
+      displayName: 'Install JMeter 5.2.1'
+      inputs:
         jmeterVersion: '5.2.1'
     
     #- task: Bash@3
