@@ -71,7 +71,7 @@ stages:
         backendAzureRmKey: 'terraform.state'
 
     - task: TerraformTaskV1@0
-      displayName: 'Run Terraform validate'
+      displayName: 'Validate Terraform'
       inputs:
         command: 'validate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
@@ -79,7 +79,7 @@ stages:
         environmentServiceNameAzureRM: $(azureServiceConnectionId)
       
     - task: TerraformTaskV1@0
-      displayName: 'Run Terraform Plan'
+      displayName: 'Plan Terraform'
       inputs:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
@@ -87,7 +87,7 @@ stages:
         environmentServiceNameAzureRM: $(azureServiceConnectionId)
 
     - task: TerraformTaskV1@0
-      displayName: 'Run Terraform Apply'
+      displayName: 'Apply Terraform'
       inputs:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
