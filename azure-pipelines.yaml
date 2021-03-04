@@ -16,8 +16,8 @@ variables:
   # Web app name
   webAppName: 'project3'
 
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  # Agent VM image name:20.04
+  vmImageName: '20.04'
 
   # Environment name
   environmentName: 'project3'
@@ -104,9 +104,9 @@ stages:
       displayName: 'Upload FakeRestAPI Package'
       artifact: drop-fakerestapi
 
-    #- publish: selenium/login.py
-      #displayName: 'Upload UI Tests definition'
-      #artifact: drop-ui-tests
+    - publish: selenium/login.py
+      displayName: 'Upload UI Tests definition'
+      artifact: drop-ui-tests
 
 - stage: Deploy
   jobs:
@@ -126,7 +126,7 @@ stages:
                 appType: 'webAppLinux'
                 appName: '$(webAppName)'
                 package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
-                runtimeStack: 'PYTHON|3.6'
+                runtimeStack: 'PYTHON|3.7'
 
             - task: Bash@3
               displayName: 'Install Postman & Newman'
