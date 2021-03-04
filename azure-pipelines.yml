@@ -106,13 +106,13 @@ steps:
       archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       #replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-      displayName: 'Upload FakeRestAPI package'
-      artifact: drop-fakerestapi
+  - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+    displayName: 'Upload FakeRestAPI package'
+    artifact: drop-fakerestapi
 
-    - publish: selenium/login.py
-      displayName: 'Upload UI Tests definition'
-      artifact: drop_ui_tests
+  - publish: selenium/login.py
+    displayName: 'Upload UI Tests definition'
+    artifact: drop_ui_tests
 
 - stage: Deploy
   displayName: 'Deploy Web App to custom VM'
