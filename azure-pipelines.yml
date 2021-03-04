@@ -99,7 +99,7 @@ steps:
         
   - task: ArchiveFiles@2
     displayName: 'Archive FakeRestAPI'
-      inputs:
+    inputs:
       rootFolderOrFile: 'jmeter/fakerestapi'
       includeRootFolder: false
       archiveType: zip
