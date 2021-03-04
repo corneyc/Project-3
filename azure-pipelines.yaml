@@ -18,11 +18,11 @@ variables:
   # Environment name
   environmentName: 'project3'
 
-  # Project root folder. Point to the folder containing manage.py file.
+  # Project root folder. Point to the folder containing login.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
 
-  # Python version: 3.7
-  pythonVersion: '3.7'
+  # Python version: 3.7.6
+  pythonVersion: '3.7.6'
 
 stages:
 - stage: Build
@@ -32,11 +32,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: UsePythonVersion@0
+    #Needed for terraform VM deployment
+    - task: InstallSSHKey@0
       inputs:
-        versionSpec: '$(pythonVersion)'
-      displayName: 'Use Python $(pythonVersion)'
-
+        knownHostsEntry: ''
+        sshPublicKey: '$(udacityPubKey)'
+        sshKeySecureFile: 'udacity_id_rsa'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
