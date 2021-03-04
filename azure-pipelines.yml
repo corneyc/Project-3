@@ -17,9 +17,6 @@ variables:
   # Environment name
   environmentName: 'test'
 
-  # secret variable 
-  sshPublicKey: 'udacityPubKey'
-
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
 
@@ -33,92 +30,91 @@ stages:
   - job: BuildJob
     pool:
       vmImage: ubuntu-20.04
-steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '$(pythonVersion)'
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
 
-  - task: InstallSSHKey@0
-    displayName: 'Install an SSH key'
-    inputs:
-      knownHostsEntry: 'SHA256:n6Pm5/0kHC7RDoR5GuFsngb5/X3AaGGbKok7Fy1Pyew corneliuspchakabva@Corneliuss-Mini
-'
-      sshPublicKey: '$(udacityPubKey)'
-      shKeySecureFile: 'myKey'
+    #- task: InstallSSHKey@0
+      #displayName: 'Install an SSH key'
+      #inputs:
+        #knownHostsEntry: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+        #sshPublicKey: '$(udacityPubKey)'
+        #sshKeySecureFile: 'myKey'
 
   #Uploaded ssh keys into secure file in Devops  
-  - task: DownloadSecureFile@1
-    name: udacity_public_key
-    displayName: 'Download Public Key'
-    inputs:
-      secureFile: 'myKey.pub'
+    - task: DownloadSecureFile@1
+      name: udacity_public_key
+      displayName: 'Download Public Key'
+      inputs:
+        secureFile: 'myKey.pub'
   
   # Not installing Terraform because its already installed on the machine
     #- task: TerraformInstaller@0
       #displayName: 'Install Terraform 0.12.12'
       #inputs:
         #terraformVersion: '0.12.12'     
-  - task: TerraformTaskV1@0
-    displayName: 'Initialize Terraform'
-    inputs:
-      provider: 'azurerm'
-      command: 'init'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
-      backendServiceArm: $(azureServiceConnectionId)
-      backendAzureRmResourceGroupName: 'tstate-rg'
-      backendAzureRmStorageAccountName: 'tstate2904'
-      backendAzureRmContainerName: 'tstate-cn'
-      backendAzureRmKey: 'terraform.tfstate'
+    - task: TerraformTaskV1@0
+      displayName: 'Initialize Terraform'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        backendServiceArm: $(azureServiceConnectionId)
+        backendAzureRmResourceGroupName: 'tstate-rg'
+        backendAzureRmStorageAccountName: 'tstate2904'
+        backendAzureRmContainerName: 'tstate-cn'
+        backendAzureRmKey: 'terraform.tfstate'
       
-  - task: TerraformTaskV1@0
-    inputs:
-      command: 'validate'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
-      backendAzureRmResourceGroupName: 'tstate-rg'
-      backendAzureRmStorageAccountName: 'tstate2904'
+    - task: TerraformTaskV1@0
+      inputs:
+        command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test' 
+        backendAzureRmResourceGroupName: 'tstate-rg'
+        backendAzureRmStorageAccountName: 'tstate2904'
       displayName: 'Run Terraform validate'
     
-  - task: TerraformTaskV1@0
-    inputs:
-      provider: 'azurerm'
-      command: plan
-      workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
-      commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-      environmentServiceNameAzureRM: $(azureServiceConnectionId)
-      backendServiceArm: $(azureServiceConnectionId) 
+    - task: TerraformTaskV1@0
+      inputs:
+        provider: 'azurerm'
+        command: plan
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
+        environmentServiceNameAzureRM: $(azureServiceConnectionId)
+        backendServiceArm: $(azureServiceConnectionId) 
       displayName: 'Terraform Plan'
-  - task: TerraformTaskV1@0
-    displayName: 'Terraform Apply and Deploy Cloud Infrastructure'
-    inputs:
-      provider: 'azurerm'
-      command: 'apply'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
-      commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
-      environmentServiceNameAzureRM: $(azureServiceConnectionId) 
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Apply and Deploy Cloud Infrastructure'
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environment/test'
+        commandOptions: '-var "public_key_path=$(udacity_public_key.secureFilePath)"'
+        environmentServiceNameAzureRM: $(azureServiceConnectionId) 
         
-  - task: ArchiveFiles@2
-    displayName: 'Archive FakeRestAPI'
-    inputs:
-      rootFolderOrFile: 'jmeter/fakerestapi'
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-      #replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      displayName: 'Archive FakeRestAPI'
+      inputs:
+        rootFolderOrFile: 'jmeter/fakerestapi'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+        #replaceExistingArchive: true
 
-  - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-    displayName: 'Upload FakeRestAPI package'
-    artifact: drop-fakerestapi
+    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+      displayName: 'Upload FakeRestAPI package'
+      artifact: drop-fakerestapi
 
-  - publish: selenium/login.py
-    displayName: 'Upload UI Tests definition'
-    artifact: drop_ui_tests
+    - publish: selenium/login.py
+      displayName: 'Upload UI Tests definition'
+      artifact: drop_ui_tests
 
-  - stage: Deploy
-    displayName: 'Deploy Web App to custom VM'
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
+- stage: Deploy
+  displayName: 'Deploy Web App to custom VM'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
   - deployment: DeployfakeRestAPI
     pool:
       vmImage: ubuntu-20.04
@@ -135,8 +131,8 @@ steps:
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-  - stage: Tests
-    jobs:
+- stage: Tests
+  jobs:
 
   - job: Integration
     displayName: 'Integration Tests'
@@ -236,8 +232,6 @@ steps:
           ls -lah endurance-test-report/
           ls -lah stress-test-report/
           cat jmeter.log        
-
-
   - deployment: Functional
     displayName: 'Functional UI Tests'
     environment:
@@ -264,3 +258,15 @@ steps:
                 export PATH=$PATH:`pwd` # add chromedriver executable to path
                 python3 ../drop-ui-tests/login.py
                 cat selenium.log
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
