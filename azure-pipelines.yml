@@ -139,18 +139,18 @@ stages:
     #pool:
       #vmImage: ubuntu-20.04
     
-  steps:
+      steps:
 
-    - task: Bash@3
-      displayName: 'Install Postman & Newman'
-      inputs:
-        targetType: 'inline'
-        script: |
-          #! /bin/bash
-          pwd
-          sudo snap install postman
-          sudo npm install -g newman
-          sudo npm install newman-reporter-junitfull -g      
+        - task: Bash@3
+          displayName: 'Install Postman & Newman'
+          inputs:
+          targetType: 'inline'
+          script: |
+            #! /bin/bash
+            pwd
+            sudo snap install postman
+            sudo npm install -g newman
+            sudo npm install newman-reporter-junitfull -g      
     
     #- task: Bash@3
       #displayName: 'Regression Tests'
