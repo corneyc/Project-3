@@ -188,7 +188,7 @@ stages:
     #pool:
       #vmImage: 'ubuntu-20.04'
     
-      steps:
+    steps:
       - task: JMeterInstaller@0
         displayName: 'Install JMeter 5.2.1'
         inputs:
