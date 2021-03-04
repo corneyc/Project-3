@@ -45,15 +45,6 @@ The following screenshots illustrate the `State backend and the Service Principa
 
 ![s_principal](https://github.com/corneyc/Project-3/blob/main/images/Terraform_6.png)
 
-![build/ci/cd](https://github.com/corneyc/Project-3/blob/main/images/ss_1.png)
-
-![build](https://github.com/corneyc/Project-3/blob/main/images/ss_2.png)
-
-![deploy web app](https://github.com/corneyc/Project-3/blob/main/images/ss_3.png)
-
-
-
-
 
 ### 2. For the Azure DevOps CI/CD pipeline:
 
@@ -61,15 +52,15 @@ The following screenshots illustrate the `State backend and the Service Principa
  
  -:white_check_mark: Execute Test Suites for:
  
-    - Postman - runs during build stage
+ - Postman - runs during build stage
     
-    ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install_postman.png)
+ ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install_postman.png)
     
-    - Selenium - runs on the linux VM in the deployment stage
+- Selenium - runs on the linux VM in the deployment stage
     
     ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install_selenium.png)
     
-    - JMeter - runs against the AppService in the deployment stage
+    -[] JMeter - runs against the AppService in the deployment stage
     
     ![Jmeter]()
 
