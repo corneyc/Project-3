@@ -115,6 +115,7 @@ stages:
       displayName: 'Upload FakeRestAPI package'
       archiveType: 'zip'
       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+    
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'Upload FakeRestAPI Package'
       artifact: drop-fakerestapi
@@ -133,9 +134,9 @@ stages:
     displayName: 'Deploy app to custom VM'
     pool:
      
-     vmImage: 'Ubuntu-20.04'
-    environment: $(TEST)
-    strategy:
+      vmImage: 'Ubuntu-20.04'
+      environment: $(TEST)
+      strategy:
       runOnce:
         deploy:
           steps:
