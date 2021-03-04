@@ -48,9 +48,9 @@ The following screenshots illustrate the `State backend and the Service Principa
 
 ### 2. For the Azure DevOps CI/CD pipeline:
 
- -:white_check_mark:  Create the tasks that allow for Terraform to run and create the above resources.
+ :white_check_mark:  Create the tasks that allow for Terraform to run and create the above resources.
  
- -:white_check_mark: Execute Test Suites for:
+ :white_check_mark: Execute Test Suites for:
  
  - Postman - runs during build stage
     
