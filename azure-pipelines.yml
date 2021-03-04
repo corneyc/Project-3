@@ -109,12 +109,10 @@ stages:
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-        #replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'Upload FakeRestAPI package'
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+      artifact: drop-fakerestapiip'
     
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'Upload FakeRestAPI Package'
