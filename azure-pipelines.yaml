@@ -122,13 +122,21 @@ stages:
       runOnce:
         deploy:
           steps:
+            #- task: AzureWebApp@1
+              #displayName: 'Deploy Azure Web App'
+              #inputs:
+                #azureSubscription: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
+                #appType: 'webAppLinux'
+                #appName: '$(webAppName)'
+                #package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+                #runtimeStack: 'PYTHON|3.7'
             - task: AzureWebApp@1
               displayName: 'Deploy Azure Web App'
               inputs:
                 azureSubscription: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
                 appType: 'webAppLinux'
                 appName: '$(webAppName)'
-                package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+                package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
                 runtimeStack: 'PYTHON|3.7'
 
             - task: Bash@3
