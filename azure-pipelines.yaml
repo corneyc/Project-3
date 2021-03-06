@@ -125,10 +125,10 @@ stages:
             - task: AzureWebApp@1
               displayName: 'Deploy Azure Web App'
               inputs:
-                azureSubscription: $(azureSubscription)
+                azureSubscription: '$(azureSubscription)'
                 appType: 'webApp'
-                appName: $(webAppName)
-                package: '$(Pipeline.Workspace)/fakerestapi.zip'
+                appName: '$(webAppName)'
+                package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
                 deploymentMethod: 'auto'
 
             - task: Bash@3
