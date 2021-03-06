@@ -52,17 +52,17 @@ The following screenshots illustrate the `State backend and the Service Principa
  
  :white_check_mark: Execute Test Suites for:
  
- - Postman - runs during build stage
+ 1. Postman - runs during build stage
     
  ![Postman](https://github.com/corneyc/Project-3/blob/main/images/install_postman.png)
     
-- Selenium - runs on the linux VM in the deployment stage
+2. Selenium - runs on the linux VM in the deployment stage
     
     ![Selenium](https://github.com/corneyc/Project-3/blob/main/images/install_selenium.png)
     
-    -[ ] JMeter - runs against the AppService in the deployment stage
+3. JMeter - runs against the AppService in the deployment stage
     
-    ![Jmeter]()
+    ![Jmeter](https://github.com/corneyc/Project-3/blob/main/images/selenium_tests.png)
 
 ### 3. For Postman:
 - Create a Regression Test Suite from the Starter APIs. Use the Publish Test Results task to publish the test results to Azure Pipelines.
