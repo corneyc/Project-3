@@ -141,7 +141,10 @@ stages:
                   sudo npm install -g newman
                   sudo npm install newman-reporter-junitfull -g      
             
-            # TODO: Install JMeter 
+            - task: JMeterInstaller@0
+              displayName: 'Install JMeter 5.2.1'
+              inputs:
+                jmeterVersion: '5.2.1'
             
             - task: Bash@3
               displayName: 'Install Selenium'
