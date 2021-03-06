@@ -131,6 +131,15 @@ stages:
                 package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
                 deploymentMethod: 'auto'
 
+- stage: Tests
+  jobs:
+
+  - job: Integration
+    displayName: 'Integration Tests'
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+
             - task: Bash@3
               displayName: 'Install Postman & Newman'
               inputs:
