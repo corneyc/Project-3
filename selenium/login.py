@@ -26,5 +26,46 @@ def login (user, password):
     assert "Products" in results
     logging.info("Successfully logged in as " + user)
 
+
+    # Test Add Items to Shopping Cart
+    logging.info("Starting the shopping...")
+    path_inventory_item = path_content_div + " > div[id='inventory_container'] > div[class='inventory_list'] > div[class='inventory_item']"
+    product_items = driver.find_elements_by_css_selector(path_inventory_item)
+    assert len(product_items) == 6
+    logging.info("Successfully found 6 product items.")    
+    
+    for i in range(6):
+        path_product_item_name = path_inventory_item + " > div[class='inventory_item_label'] > a[id='item_" + str(i) + "_title_link'] > div[class='inventory_item_name']"
+        product_item_name = driver.find_element_by_css_selector(path_product_item_name)
+        product_item_name.find_element_by_xpath('..//..//..//div[@class="pricebar"]//button[@class="btn_primary btn_inventory"]').click()
+        logging.info("Succesfully added to shopping cart: " + product_item_name.text)
+
+    path_shopping_cart_link = "div[id='page_wrapper'] > div[id='contents_wrapper'] > div[id='header_container'] > div[id='shopping_cart_container'] > a.shopping_cart_link.fa-layers.fa-fw"
+    path_shopping_cart_badge = path_shopping_cart_link + " > span.fa-layers-counter.shopping_cart_badge"
+    shopping_cart_total_items = driver.find_element_by_css_selector(path_shopping_cart_badge).text
+    assert '6' == shopping_cart_total_items
+    logging.info("Succesfully added to shopping cart: 6 items in total")
+
+
+    # Test Remove Items from Shopping Cart
+    logging.info("A spouse came in, need to destroy the the evidence... ;-)")
+    driver.find_element_by_css_selector(path_shopping_cart_link).click()
+    path_cart_title = "div[id='page_wrapper'] > div[id='contents_wrapper'] > div[class='subheader']"
+    cart_title = driver.find_element_by_css_selector(path_cart_title).text
+    assert 'Your Cart' in cart_title
+    logging.info("Successfully entered the shopping cart page.")
+
+    path_cart_item_remove_buttons = "div[id='page_wrapper'] > div[id='contents_wrapper'] > div[id='cart_contents_container'] > div > div[class='cart_list'] > div[class='cart_item'] > div[class='cart_item_label'] > div[class='item_pricebar'] > button[class='btn_secondary cart_button']"
+    remove_item_buttons = driver.find_elements_by_css_selector(path_cart_item_remove_buttons)
+    
+    for remove_button in remove_item_buttons:
+        shopping_cart_item_name = remove_button.find_element_by_xpath('..//..//a[contains(@id, "_title_link")]//div[@class="inventory_item_name"]').text
+        remove_button.click()
+        logging.info("Succesfully removed an item from shopping cart: " + shopping_cart_item_name)
+
+    shopping_cart_total_items = driver.find_elements_by_css_selector(path_shopping_cart_badge)
+    assert 0 == len(shopping_cart_total_items)
+    logging.info("Succesfully removed all items from shopping cart.")
+
 login('standard_user', 'secret_sauce')
 
