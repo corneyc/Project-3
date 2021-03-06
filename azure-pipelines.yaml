@@ -125,10 +125,10 @@ stages:
             - task: AzureWebApp@1
               displayName: 'Deploy Azure Web App'
               inputs:
-                azureSubscription: 'corneyc-projects-connection (e1b9dc3d-d767-4329-887b-85b9424a7d8b)'
+                azureSubscription: $(azureSubscription)
                 appType: 'webApp'
-                appName: '$(webAppName)'
-                package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+                appName: $(webAppName)
+                package: '$(Pipeline.Workspace)/fakerestapi.zip'
                 deploymentMethod: 'auto'
 
             - task: Bash@3
