@@ -17,7 +17,7 @@ variables:
   webAppName: 'project3'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'packer-temp'               #'ubuntu-latest'
 
   # Environment name
   environmentName: 'project3'
